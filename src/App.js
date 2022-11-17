@@ -1,25 +1,54 @@
-import logo from './logo.svg';
-import './App.css';
+import * as React from 'react'
+import PropTypes from 'prop-types'
 
-function App() {
+function UsernameForm({onSubmitUsername}) {
+  const userNameRef = React.useRef()
+  const [error, setError] = React.useState(false)
+  const [userName, setUserName] = React.useState('')
+
+  function handleSubmit(event) {
+    event.preventDefault()
+    onSubmitUsername(userName)
+  }
+  function handleChange(event) {
+    //USING REF TO FIND VALUE
+    const userNameInput = userNameRef.current.value
+    //USING EVENT PROPERTIES TO FIND VALUE
+    const {value} = event.target
+    //CONTROLLED INPUT
+    setUserName(userNameInput.toLowerCase())
+
+    // UNCONTROLLED INPUT
+    // const isNotLowerCase = value !== value.toLowerCase()
+    //   setError(isNotLowerCase)
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <form onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="username">Username:</label>
+        <input
+          id="username"
+          value={userName}
+          onChange={handleChange}
+          ref={userNameRef}
+          type="text"
+        />
+      </div>
+      {error && <div role="alert">Please use lower case only</div>}
+      <button type="submit" disabled={error}>
+        Submit
+      </button>
+    </form>
+  )
 }
 
-export default App;
+UsernameForm.propTypes = {
+  onSubmitUsername: PropTypes.func.isRequired,
+}
+
+function App() {
+  const onSubmitUsername = username => alert(`You entered: ${username}`)
+  return <UsernameForm onSubmitUsername={onSubmitUsername} />
+}
+
+export default App
