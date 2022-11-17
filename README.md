@@ -4,7 +4,7 @@
 
 ### Hooks
 
-- `useRef`
+- [`useRef`](https://reactjs.org/docs/hooks-reference.html#useref)
 
 By assigning a variable to `useRef()` and then passing that variable as a `ref` prop into an component you are able to access the node object of that component, whcih exposes all the associated `properties` and `methods`.
 
@@ -26,7 +26,7 @@ const handleChange = () => {
 </form>
 ```
 
-- `useState`
+- [`useState`](https://reactjs.org/docs/hooks-state.html)
 
 `useState()` allows the use of controlled components by assigning the `value` property of a form component to a `state` variable and then updating the `state` variable to reflect user interaction
 
