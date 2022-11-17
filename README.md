@@ -50,6 +50,28 @@ const handleChange = () => {
 </form>
 ```
 
+It is also possible to handle errors with controlled components e.g. if you only want lowercase it is possible to correct user input without generating a validation error.
+
+```
+const [userName, setUserName] = useState('')
+const userNameRef = React.useRef()
+
+const handleChange = () => {
+  const userNameInput = userNameRef.current.value
+  setUserName(userNameInput.toLowerCase())
+}
+
+<form>
+  <input
+    id="username"
+    value={userName}
+    onChange={handleChange}
+    ref={userNameRef}
+    type="text"
+  />
+</form>
+```
+
 ### Event properties
 
 ```
