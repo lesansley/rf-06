@@ -58,7 +58,7 @@ const userNameRef = React.useRef()
 
 const handleChange = () => {
   const userNameInput = userNameRef.current.value
-  setUserName(userNameInput.toLowerCase())
+  setUserName(userNameInput.toLowerCase()) // this ensures the value of the component is always lowercase
 }
 
 <form>
